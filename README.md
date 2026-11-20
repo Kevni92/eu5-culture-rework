@@ -1,6 +1,6 @@
 # EU5 Culture Rework
 
-Konzept und technische Machbarkeitsprüfung für eine simulationsorientierte Überarbeitung der Kulturbeziehungen in Europa Universalis V.
+Konzept und technische Machbarkeitsprüfung für eine simulationsorientierte Überarbeitung der Kulturbeziehungen in Europa Universalis V. **Beschlossener Hybridansatz:** eigener gerichteter Meinungswert (−100 bis +100), der bei Grenzüberschreitung auf die fünf bestehenden Kulturmeinungsstufen synchronisiert wird. **Kulturakzeptanz und ihre Vanilla-Auswirkungen bleiben unverändert.**
 
 ## Dokumentation
 
