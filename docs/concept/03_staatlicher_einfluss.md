@@ -1,6 +1,6 @@
 # 3. Staatlicher Einfluss auf Kulturbeziehungen
 
-Staaten können gesellschaftliche Einstellungen **mittelbar** verändern. Ihre Maßnahmen erzeugen eine positive oder negative **Entwicklung pro Monat**, statt sofort einen globalen Meinungswert umzuschalten.
+Staaten können gesellschaftliche Einstellungen **mittelbar** verändern. Ihre Maßnahmen erzeugen eine positive oder negative **Entwicklung über die Zeit**, statt sofort einen globalen Meinungswert umzuschalten. Die Simulation kann monatlich oder jährlich aktualisiert werden.
 
 ## A. Religionszusammensetzung und Religionspolitik
 
@@ -25,7 +25,7 @@ Ein Kabinettsmitglied fördert die Beziehung einer **im eigenen Staat vertretene
 **Beispiel:** Kastilien beauftragt ein Kabinettsmitglied, die portugiesische Bevölkerung anzusprechen. Dadurch verbessert sich langsam **portugiesisch → kastilisch**.
 
 Die Wirkung hängt mindestens ab von:
-- dem Bevölkerungsanteil der Zielkultur im eigenen Staat gegenüber ihrer weltweiten Bevölkerung;
+- der lokalen Bedeutung der Zielkultur im Staat und dem Anteil dieser Bevölkerung an allen Angehörigen der Zielkultur weltweit;
 - der Stärke und Dauer der Bemühungen;
 - möglichen gesellschaftlichen Widerständen.
 
