@@ -30,8 +30,10 @@
 1. **Initialisieren:** beim Spielstart relevante bestehende Kulturkontakte ermitteln.
 2. **Ereignisgetrieben aktualisieren:** ein passender Hook markiert betroffene Länder/Kulturpaare als neu zu bewerten.
 3. **Aktiv halten:** Entwicklung **monatlich oder jährlich**, je nach Einstellung, ausschließlich für relevante Beziehungen; `set_cultural_view` nur beim Wechsel der abgeleiteten nativen Meinungsstufe.
-4. **Ruhend stellen:** wenn kein relevanter Kontakt mehr besteht, keine laufende Veränderung; **Meinungswert bleibt gespeichert**.
+4. **Ruhend stellen:** Wenn **keinerlei relevante Kontakte** mehr bestehen, wird der **Zielwert 0**. Der bestehende Meinungswert bleibt gespeichert, läuft aber **zeitabhängig langsam in Richtung 0**. Ein bloßes Aussetzen ohne Meinungsveränderung ist nicht mehr vorgesehen.
 5. **Jährlich abgleichen:** veränderte Bevölkerungszusammensetzung, Migration, Diplomatieende oder fehlende Hooks auffangen.
+
+**Performance-Frage:** Bei inaktiven Paaren ist keine Neuberechnung von Religion, Bevölkerung und Diplomatie erforderlich. Denkbar sind zeitbasierte Berechnung seit der letzten Aktualisierung („lazy decay“) und/oder seltene synchronisierende Updates. **Offen:** Wenn wir nicht regelmäßig `set_cultural_view` ausführen, bleibt die native Stufe einer inaktiven Beziehung zwischenzeitlich veraltet. Beim Reaktivieren muss deshalb vor der nächsten Spielwirkung nachgezogen werden; wie viel ältere native Stufen außerhalb aktiver Kontakte tolerierbar sind, braucht einen Runtime-Test.
 
 **Wichtige Einschränkung:** `on_actions` ersetzen keinen Mechanismus zur effizienten Auflistung tatsächlich betroffener Kulturpaare. Ob sich diese Paare persistent registrieren und ohne globale Vollsuche iterieren lassen, ist offen.
 
