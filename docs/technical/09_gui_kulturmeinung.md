@@ -50,28 +50,28 @@ Der ältere [`data_types_script.txt`-Dump](https://github.com/HLJSXK/eu5-modding
 Vanilla hat bereits `SimpleContextualStringPairTooltipType`, aber dessen aktuelle Texte sind allein **Engine-generierte native Meinungsbeschreibungen**. Die Tooltip-Erweiterung muss für die Mod eigene Daten ausgeben:
 
 - **Richtung**, **kontinuierlicher Wert** (−100…+100), **aktuelle native Stufe**;
-- **Änderung pro Berechnungsintervall**, korrekt als „pro Monat“ oder „pro Jahr“;
+- **Gesellschaftlicher Zielwert**, **aktuelle Annäherung pro Berechnungsintervall**, korrekt als „pro Monat“ oder „pro Jahr“;
 - optional Distanz zur nächsten Stufe.
 
 Ein **Hover auf den Änderungswert innerhalb des Tooltip** soll eine separate Aufschlüsselung bieten. Das Muster **verschachtelter Tooltip-Widgets** ist in [Community-Mod: `aaa_dmsd_stability_tooltip.gui`](https://github.com/HLJSXK/eu5-modding-base/blob/9e941cedccf963921733810a041ba912b6b8ceb7/reference_mods/3739393770/in_game/gui/shared/aaa_dmsd_stability_tooltip.gui) dokumentiert und implementiert; daraus folgt **Plausibilität**, aber noch keine Bestätigung für unseren spezifischen Widget-Kontext.
 
-**Wichtige Designregel:** Die Aufschlüsselung stammt aus **den tatsächlich berechneten Beiträgen** (Religion, Diplomatie, Kabinettsarbeit, Krieg, Zusammenleben), nicht aus separaten GUI-Schätzungen.
+**Wichtige Designregel:** Die Faktoren (Religion, Diplomatie, Kabinettsarbeit, Krieg, Zusammenleben) erklären **den Zielwert**, nicht direkt die monatliche Veränderung. Die Änderungsrate ergibt sich aus `(Zielwert − Meinung) × zeitabhängiger Anpassungsfaktor`. Beide Tooltips müssen den identischen gespeicherten Simulationszustand nutzen. Bei Kontaktverlust wird der Zielwert 0 und die Meinung tendiert zeitabhängig dorthin.
 
 ## 6. „Eigener Modifier“ für die Änderungsrate – Engine-Grenze
 
-Die gewünschte Änderungsrate soll als **eigenständige berechnete Größe** mit Faktoren-Aufschlüsselung geführt werden, **unabhängig vom gespeicherten Meinungswert**.
+Die **Zielmeinung** soll als **eigenständige berechnete Größe** mit Faktoren-Aufschlüsselung geführt werden. Die aktuelle **Änderungsrate** wird aus Zielwert, Meinung und Trägheit abgeleitet; sie ist **kein zweiter unabhängig addierter Satz von Modifiern**.
 
 Im älteren [Modifier-Type-Katalog](https://github.com/HLJSXK/eu5-modding-base/blob/9e941cedccf963921733810a041ba912b6b8ceb7/reference_game_files/game/main_menu/common/modifier_type_definitions/00_modifier_types.txt) sind als Kategorien u. a. `country`, `location`, `religion` genannt, **nicht `culture` oder `culture_pair`**. Im [Engine-Effekt-Dump](https://github.com/HLJSXK/eu5-modding-base/blob/9e941cedccf963921733810a041ba912b6b8ceb7/reference_official_defines/docs/effects.log) ist auch kein `add_culture_modifier` belegt.
 
 **Daher derzeit NICHT als nachgewiesen behaupten, dass ein neuer nativer Modifier je gerichtetes Kulturpaar möglich ist.**
 
 Praktischer Forschungsansatz:
-- Pro Kulturpaar einen **separaten numerischen Änderungswert** speichern.
-- Beiträge als **einzeln erklärbare Komponenten** führen oder bei der regelmäßigen Aktualisierung berechnen.
-- Die **Summe** ist der Änderungswert; ein **Modifier-artiger Tooltip** listet seine Einflüsse auf.
+- Pro Kulturpaar den **aktuellen Zielwert** sowie nach Bedarf einen **gecacheten Änderungswert** und die Anpassungsrate führen.
+- Die **gewichteten Zielwertbeiträge** einzeln erklären, ohne sie bei jedem Tooltip-Hover erneut zu berechnen.
+- **Summe der Beiträge = Zielwert** (mit eventueller Begrenzung auf −100…+100). **Tatsächliche Änderung = Annäherung an diesen Zielwert.** Ein Modifier-artiger Tooltip stellt die Beiträge dar.
 - Wenn der aktuelle Build doch einen echten Culture-/Pair-Modifier unterstützt, kann diese Berechnungsgröße später an einen echten Engine-Modifier gebunden werden.
 
-**Testanforderung:** Hauptwert und Tooltip-Summen müssen beim monatlichen/jährlichen Lauf konsistent sein. Keine Pop- oder GUI-Volliteration zur bloßen Darstellung des Tooltips.
+**Testanforderung:** Summe der Zielwertbeiträge, gecachter Zielwert und abgeleitete Änderungsrate müssen bei monatlichen/jährlichen Läufen übereinstimmen. Keine Pop- oder GUI-Volliteration zur bloßen Darstellung des Tooltips. Bei inaktiven Paaren explizit `Ziel = 0` anzeigen.
 
 ## 7. Performance, Update-Takt und Mod-Kompatibilität
 
