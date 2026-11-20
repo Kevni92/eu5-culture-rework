@@ -21,7 +21,7 @@ Die **Weltquote allein darf kein Ausschlusskriterium** sein. Beispiel: 50.000 Ch
 
 ## Vorhandene Script-Belege
 
-`culture_percentage_in_country` und `culture_population_in_country` sind in den Vanilla-Kulturaktionen verwendet. Damit sind **länderspezifische** Quoten und Größen grundsätzlich als Script-Ausdrücke nachgewiesen; **globale Kulturbevölkerung, Iteration und Aggregation** sind damit noch nicht nachgewiesen.
+`culture_percentage_in_country` und `culture_population_in_country` sind in den Vanilla-Kulturaktionen verwendet. Damit sind **länderspezifische** Quoten und Größen grundsätzlich als Script-Ausdrücke nachgewiesen. **Ergänzung 20.11.2026:** Im älteren Engine-Dump ist auch der numerische **Trigger** `world_culture_population` (`none/any`, Kulturparameter) nachgewiesen. Seine Verwendung als direkt auslesbarer **Script-Value** zur Quotientenberechnung ist dagegen weiterhin zu testen. Persistente globale Aggregate/Iteration und Performance sind noch nicht verifiziert.
 
 ## Zu prüfen
 
