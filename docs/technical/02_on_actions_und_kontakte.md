@@ -15,7 +15,7 @@
 | Entlassung eines Staates | `on_released_country` | Neue staatliche Kontaktbeiträge prüfen |
 | Politischer Kurs | `on_policy_changed` | Relevante staatliche Einflussfaktoren aktualisieren |
 | Neue bestimmte Diplomatiebeziehung | `on_scripted_relation_created` | Bündnisse/andere Beziehungen berücksichtigen |
-| Wiederkehrende Prüfungen | `monthly_country_pulse`, `yearly_country_pulse` | Veränderungen und fehlende Ereignisse abgleichen |
+| Wiederkehrende Prüfungen | `monthly_country_pulse`, `yearly_country_pulse` | Wählbare Meinungskalkulation und periodischen Abgleich ausführen; Mehrfachberechnung pro Kulturpaar vermeiden |
 
 `on_scripted_relation_created` wird konkret in `diplomatic_reactions.txt` verwendet. `on_actions.log` führt die genannten jährlichen und monatlichen Länder-Pulse auf.
 
@@ -29,13 +29,15 @@
 
 1. **Initialisieren:** beim Spielstart relevante bestehende Kulturkontakte ermitteln.
 2. **Ereignisgetrieben aktualisieren:** ein passender Hook markiert betroffene Länder/Kulturpaare als neu zu bewerten.
-3. **Aktiv halten:** monatliche Entwicklung ausschließlich für tatsächlich relevante Beziehungen.
+3. **Aktiv halten:** Entwicklung **monatlich oder jährlich**, je nach Einstellung, ausschließlich für relevante Beziehungen; `set_cultural_view` nur beim Wechsel der abgeleiteten nativen Meinungsstufe.
 4. **Ruhend stellen:** wenn kein relevanter Kontakt mehr besteht, keine laufende Veränderung; **Meinungswert bleibt gespeichert**.
 5. **Jährlich abgleichen:** veränderte Bevölkerungszusammensetzung, Migration, Diplomatieende oder fehlende Hooks auffangen.
 
 **Wichtige Einschränkung:** `on_actions` ersetzen keinen Mechanismus zur effizienten Auflistung tatsächlich betroffener Kulturpaare. Ob sich diese Paare persistent registrieren und ohne globale Vollsuche iterieren lassen, ist offen.
 
-**Status:** Geeignete Ereignis-Anknüpfungspunkte sind **belegt im alten Stand**; lückenlose Aktivierung/Deaktivierung **nicht belegt**.
+**Zusatzprüfung:** Monatliche oder jährliche Pulse treten pro Land auf. Eine globale gerichtete Kulturbeziehung darf **nicht bei jedem betroffenen Land erneut fortgeschrieben werden**. Zu testen sind eine einmalige zentrale Ausführung, die gewählte Frequenz sowie eine getrennte jährliche Kontakt-/Pop-Neubewertung.
+
+**Status:** Geeignete Ereignis-Anknüpfungspunkte sind **belegt im alten Stand**; lückenlose Aktivierung/Deaktivierung und einmalige Ausführung pro Kulturpaar **nicht belegt**. [Synchronisierungsplan](08_hybrid_synchronisierung_und_intervalle.md).
 
 ## Referenzen
 
