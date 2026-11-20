@@ -10,6 +10,16 @@ Diese Datei sammelt **Ergebnisse**, nicht nur Annahmen. Aktuell wurden noch kein
 4. Nur danach minimale Test-Mod bauen; Errorlog, tatsächliches Spielverhalten und Performance vergleichen.
 5. Status und Fundstelle für jede Mechanik in den zugehörigen Dateien aktualisieren.
 
+## Beschlossener Plan – zuerst zu prüfende Integrationspunkte
+
+1. Gerichteten kontinuierlichen Wert auf Kultur-Scope persistent speichern und bei Save/Load stabil halten.
+2. Konkrete `set_cultural_view`-Ausführung gegen den aktuellen Spielbuild testen und **nur beim Stufenwechsel** ausführen.
+3. Grenzfälle **−100, −60, −20, +20, +60, +100** testen; auch Überspringen mehrerer Stufen in einem Jahreslauf.
+4. **Monatliche / jährliche** Berechnung auswählbar machen; jährlichen Schritt zeitlich korrekt skalieren und doppelte Ausführung durch Länder-Pulse verhindern.
+5. Startwerte aus den historischen Vanilla-Stufen ableiten; neue, ruhende und wieder aktive Kulturpaare konsistent behandeln.
+6. Unveränderte **Kulturakzeptanz, Tolerierung, Diskriminierung und Kulturkapazität** nach Stufenwechsel testen. Keine eigenen Kapazitäts- oder Pop-Modifikatoren erforderlich.
+7. Direkte Vanilla-Meinungsaktionen und Ereignisse auf Umgehungen des neuen numerischen Werts prüfen.
+
 ## Testszenarien
 
 | Szenario | Erwartete Prüfung |
@@ -22,6 +32,9 @@ Diese Datei sammelt **Ergebnisse**, nicht nur Annahmen. Aktuell wurden noch kein
 | Friedensschluss | Kriegseinfluss endet, historischer Meinungswert bleibt erhalten |
 | Migration ohne Event-Hook | Jährlicher Abgleich aktiviert bzw. deaktiviert relevante Kontakte |
 | Save/Load und neuer Spielstart | Persistenz, Doppelzählungs- und Initialisierungsfehler ausschließen |
+| −60 / −20 / +20 / +60 überschritten | Nur bei abweichender nativer Stufe `set_cultural_view`, korrekte Richtung, nur ein Set pro Änderung |
+| Monatlicher vs. jährlicher Modus | Vergleichbare langfristige Werteentwicklung; keine zwölfmal zu kleine Jahresänderung |
+| Bestehende Kultur akzeptieren | Vanilla-Aktion, Kulturkapazitätskosten und statusabhängige Pop-Folgen unverändert |
 | Große multiethnische Reiche | Monatliche/jährliche Scriptzeit messen, keine Kultur-Vollmatrix |
 
 ## Ergebnisprotokoll (pro getesteter Mechanik)
