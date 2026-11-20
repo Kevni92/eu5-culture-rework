@@ -6,7 +6,7 @@
 
 ## Architekturentscheidung
 
-- Die **einzige neu berechnete Kulturmechanik** ist ein **gerichteter Zahlenwert je Kulturpaar** im Bereich **−100 bis +100**.
+- Die **einzige neu berechnete Kulturmechanik** ist ein **gerichteter Meinungswert je Kulturpaar** im Bereich **−100 bis +100**, mit einem zusätzlichen **gesellschaftlichen Zielwert** und einer **Trägheit/Annäherungsgeschwindigkeit**.
 - Die **native Kulturmeinung** bleibt im Spiel wirksam und wird aus dem Zahlenwert abgeleitet.
 - **Kulturakzeptanz, Tolerierung, Diskriminierung, Kulturkapazität, Assimilation und weitere statusabhängige Vanilla-Effekte bleiben unverändert**. Die Mod erzeugt dafür keine alternativen Modifier oder eigene Berechnung.
 - Lediglich die schon vorhandenen Auswirkungen der **fünf nativen Kulturmeinungsstufen** ändern sich, wenn eine Grenze überschritten wird.
@@ -26,8 +26,8 @@ Damit gilt z. B. **−60 = negative**, **−20 = neutral**, **20 = positive**, *
 
 ## Synchronisierung
 
-1. Nur **aktiv registrierte, gerichtete Kulturpaare** entsprechend dem gewählten Berechnungsintervall auswerten.
-2. Numerischen Wert aus gespeicherter Meinung und gewichteten gesellschaftlichen Einflüssen fortschreiben, auf [−100, +100] begrenzen.
+1. Für **aktive gerichtete Kulturpaare** den **Zielwert** aus den gewichteten gesellschaftlichen Einflüssen (Religion, Diplomatie, Krieg, Kabinett usw.) ermitteln. Für **inaktive Paare** gilt **Zielwert 0** und keine teure Neubewertung der Ursachen.
+2. Die aktuelle Meinung **zeitabhängig zum Zielwert hinführen**, auf [−100, +100] begrenzen. Bei inaktiven Beziehungen den vergangenen Zeitraum berücksichtigen, auch wenn nicht jeden Monat ein vollständiger Update läuft.
 3. Zielstufe eindeutig anhand der Tabelle bestimmen.
 4. Tatsächliche native Stufe für exakt **Kultur A → Kultur B** prüfen.
 5. **Nur bei unterschiedlicher Stufe** `set_cultural_view` im Scope von Kultur A mit Kultur B als Ziel ausführen; andernfalls **kein Set-Effekt**.
@@ -41,7 +41,8 @@ Damit gilt z. B. **−60 = negative**, **−20 = neutral**, **20 = positive**, *
 
 - **Monatlich:** genauerer Verlauf; potenziell mehr Rechenaufwand und häufigere Grenzübertritte.
 - **Jährlich:** weniger Rechenläufe; größere Veränderungen pro Update und potenziell verzögerte sichtbare Reaktionen.
-- Die **zeitliche Änderungsrate** muss auf das verstrichene Intervall normiert werden. Ein jährlicher Lauf darf nicht nur eine Monatsänderung anwenden. Konkrete Aggregation von Ereignissen (z. B. Kriegsverluste) ist noch offen.
+- Für konstantes Ziel und monatlichen Anteil `a` der noch vorhandenen Differenz lautet die äquivalente jährliche Anpassung **`1 − (1 − a)^12`**, nicht einfach `a` und auch nicht zwingend `12a`. Ob die notwendigen Script-Operationen direkt verfügbar sind oder vorab feste Faktoren genutzt werden, ist zu prüfen. Temporäre Ereignisse und Zielwechsel zwischen zwei Ausführungen müssen gesondert behandelt werden.
+- Der Zielwert und die Annäherungsrate sind **getrennte Daten**. Ein Event wie eine Schlacht kann einen zeitlich begrenzten Zielwert-Beitrag hinterlassen, wenn im Jahresmodus der Kontakt sonst übersehen würde. Kein direktes Meinungs-Delta ist bislang beschlossen.
 - **Jährlicher Bevölkerungs-/Religions-Cache** ist von der wählbaren Frequenz der eigentlichen Meinungskalkulation zu unterscheiden.
 - Ob die Frequenz durch eine **Game Rule**, Mod-Einstellung oder andere benutzerseitige Konfiguration ohne Reload gewählt werden kann, ist zu validieren. Vorläufig ist nur das Ziel „monatlich oder jährlich auswählbar“ beschlossen.
 - Ein berechneter Zustand darf nicht durch mehrere Länder-Puls-Ereignisse **mehrfach pro Periode** aktualisiert werden. Einen eindeutigen Update-Verantwortlichen bzw. ein Periodenkennzeichen prüfen.
@@ -49,7 +50,7 @@ Damit gilt z. B. **−60 = negative**, **−20 = neutral**, **20 = positive**, *
 ## Startwert, Ruhen und externe Änderungen
 
 - Der initiale numerische Wert muss aus den **vorhandenen Vanilla-Kulturmeinungen** abgeleitet werden, damit ein neues Spiel nicht sämtliche historischen Feindschaften verliert. **Vorschlag (noch offen):** Stufenmitten −80/−40/0/+40/+80.
-- Ruhende Kulturpaare behalten ihren Zahlenwert. Bei erneutem Kontakt kann Synchronisierung und Berechnung wieder anlaufen.
+- Ruhende Kulturpaare behalten ihren letzten berechneten Meinungswert und idealerweise den Zeitstempel der letzten Aktualisierung, **tendieren aber mit Zielwert 0 langsam zur Neutralität**. Beim erneuten Kontakt muss die verstrichene Zeit berücksichtigt werden. **Offen:** periodische native Stufensynchronisierung aller ruhenden Paare vs. lazy Aktualisierung erst beim Reaktivieren; letzteres spart Arbeit, kann jedoch zwischenzeitlich eine überholte Vanilla-Stufe zurücklassen.
 - Andere Vanilla-Ereignisse können die native Stufe zwischen zwei Mod-Updates ändern. Zu entscheiden ist, ob diese Ereignisse **abgeschaltet, in den numerischen Wert überführt oder beim nächsten Update überschrieben** werden. Ohne Entscheidung entstehen widersprüchliche Meinungen.
 - Save/Load, Spieldatenmigration und neu entstandene Kulturen benötigen eine klare Initialisierungsregel.
 
@@ -59,11 +60,15 @@ Damit gilt z. B. **−60 = negative**, **−20 = neutral**, **20 = positive**, *
 2. Eigenständige gerichtete **A→B und B→A**-Werte.
 3. `cultural_view` korrekt prüfen und `set_cultural_view` nur bei veränderter Zielstufe aufrufen.
 4. Grenzfälle **−100, −60, −20, 20, 60, 100** und Überspringen mehrerer Stufen testen.
-5. Monats-/Jahrestakt mit **zeitlich vergleichbarer Änderungsrate** prüfen, insbesondere Aktivierung während einer Periode, Save/Load und erneute Änderung.
-6. Spielseitige UI-/Kulturkostenänderungen nach Stufenwechsel kontrollieren. **Kein direkter Eingriff in Kulturakzeptanz oder -kapazitätsformel.**
-7. Bestand der alten Änderungsaktionen/Events und **Synchronisierungs-Konflikte** untersuchen.
+5. Monats-/Jahrestakt mit **zeitlich äquivalenter Annäherung** zum Ziel prüfen, insbesondere Zielwechsel während einer Periode, Save/Load und Reaktivierung.
+6. Inaktive Paare müssen ohne teure Kontaktberechnung zeitabhängig gegen **Ziel 0** altern; native Stufensynchronisierung und Lazy-Updates auf Inkonsistenzen untersuchen.
+7. Spielseitige UI-/Kulturkostenänderungen nach Stufenwechsel kontrollieren. **Kein direkter Eingriff in Kulturakzeptanz oder -kapazitätsformel.**
+8. Bestand der alten Änderungsaktionen/Events und **Synchronisierungs-Konflikte** untersuchen.
 
 ## Fundstellen
+
+- [Vanilla-Bonität: Zielwert und monatlicher Pull-Faktor in Defines](https://github.com/HLJSXK/eu5-modding-base/blob/9e941cedccf963921733810a041ba912b6b8ceb7/reference_game_files/game/loading_screen/common/defines/00_defines.txt) (`CREDITWORTHINESS_TARGET_BASE = 0.5`; `CREDITWORTHINESS_MONTHLY_PULL_RATE = 0.1` im untersuchten Stand)
+- [Vanilla-Bonität: Tooltip für Zielwert-Breakdown und monatliche Annäherung](https://github.com/HLJSXK/eu5-modding-base/blob/9e941cedccf963921733810a041ba912b6b8ceb7/reference_game_files/game/in_game/gui/shared/economy_tooltips.gui)
 
 - [Engine-Dump: `set_cultural_view`, `change_cultural_view`, Variable-Maps](https://github.com/HLJSXK/eu5-modding-base/blob/9e941cedccf963921733810a041ba912b6b8ceb7/reference_official_defines/docs/effects.log)
 - [Engine-Dump: `cultural_view` und kulturbezogene Trigger](https://github.com/HLJSXK/eu5-modding-base/blob/9e941cedccf963921733810a041ba912b6b8ceb7/reference_official_defines/docs/triggers.log)
