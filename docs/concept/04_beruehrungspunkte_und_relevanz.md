@@ -24,6 +24,8 @@ Daher müssen sowohl die **Bedeutung innerhalb des Landes** als auch die **weltw
 
 ## Kontaktverlust und Wiederaufnahme
 
-Wenn Kontakte entfallen, soll der bestehende Meinungswert **erhalten** bleiben. Die Beziehung kann ruhen und bei neuem Kontakt wieder aufleben. Historisch entstandene Feindschaft oder Verbundenheit verschwindet nicht dadurch, dass Grenzen verschoben werden.
+Wenn **alle** relevanten Kontakte zwischen zwei Kulturen entfallen, wird die Beziehung **inaktiv** und ihr **Zielwert auf 0 gesetzt**. Die bestehende Meinung wird nicht gelöscht, sondern **langsam in Richtung 0 zurückgeführt**. Positive und negative historische Einstellungen verblassen über viele Jahre. Beim Wiederaufleben eines Kontakts startet die Beziehung mit ihrem inzwischen gealterten Wert, nicht automatisch bei 0.
+
+**Entfällt nur der Kontakt in einem Land**, bleiben aber andere relevante Kontakte der beiden Kulturen bestehen, wird die Beziehung **nicht** inaktiv. Stattdessen verändert sich die Zusammensetzung des aktiven Zielwerts.
 
 **Offen:** Welche Kontakte und welche Mindestbedeutung genügen, damit eine Beziehung als aktiv gilt?
