@@ -13,5 +13,6 @@ Kulturelle Beziehungen sind historische, gesellschaftliche Prozesse. Ein **geric
 3. [Staatlicher Einfluss: Religion, Diplomatie und Kabinett](03_staatlicher_einfluss.md)
 4. [Berührungspunkte und Relevanz](04_beruehrungspunkte_und_relevanz.md)
 5. [Gameplay-Folgen und offene Designfragen](05_auswirkungen_und_offene_fragen.md)
+6. [Kulturmeinung im Kulturfenster: Icon, Fortschrittsbalken und Tooltip](06_kulturmeinung_im_kulturfenster.md)
 
 **Stand:** Architekturentscheidung vom 20.11.2026: Hybrid aus kontinuierlichem Meinungsscore und bestehenden fünf Stufen. Die Grenzen −60/−20/+20/+60 sind beschlossen; weitere Einflussgewichte bleiben Balancing-Entwürfe.
