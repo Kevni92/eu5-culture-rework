@@ -2,6 +2,8 @@
 
 Diese Datei sammelt **Ergebnisse**, nicht nur Annahmen. Aktuell wurden noch keine Mods erstellt oder Ingame-Tests durchgeführt.
 
+Für die geplante erste Version gelten jetzt verbindlich der [V1-Implementierungsplan](10_implementierungsplan_v1.md), die [Verifikationsmatrix](11_v1_verifikationsmatrix.md) und die [detaillierten Abnahmetests](12_v1_abnahme_und_tests.md).
+
 ## Vor jedem technischen Beschluss
 
 1. **Zielbuild festhalten** (Spielversion, Checksum, Steam-Build).
