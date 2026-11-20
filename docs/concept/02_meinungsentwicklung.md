@@ -1,6 +1,6 @@
-# 2. Monatliche Meinungsentwicklung
+# 2. Kontinuierliche Meinungsentwicklung
 
-Jede relevante, gerichtete Kulturbeziehung verändert sich **monatlich**. Die Entwicklung ergibt sich aus mehreren gesellschaftlichen Einflüssen, statt aus einmaligen Meinungsaktionen.
+Jede relevante, gerichtete Kulturbeziehung entwickelt sich über die Zeit. Die Berechnung soll für den Spieler **monatlich oder jährlich wählbar** sein, um Simulationstiefe und Performance gegeneinander abzuwägen. Die Entwicklung ergibt sich aus gesellschaftlichen Einflüssen, statt aus einmaligen Meinungsaktionen.
 
 ## Vorgesehene Einflussgruppen
 
@@ -23,6 +23,11 @@ Wenn Kastilien mit Granada Krieg führt, kann die Meinung der betroffenen Kultur
 
 Eine Kultur soll sich nach Kriegsende über viele Jahre erholen können, ohne dass das Kriegsende sofort alle Auswirkungen beseitigt.
 
-## Balancing-Prinzip
+## Berechnungshäufigkeit und Balancing
 
-Die normale Änderung bleibt klein und über Jahrzehnte nachvollziehbar; größere Ereignisse dürfen zusätzliche Impulse geben. Wie stark Faktoren kombiniert, begrenzt oder abgeschwächt werden, ist noch offen.
+- **Monatlich:** Veränderungen werden zeitnah sichtbar; höherer Berechnungsaufwand.
+- **Jährlich:** weniger häufige Berechnung; Entwicklungen werden in größeren Schritten sichtbar.
+- Die **langfristige Änderungsrate soll in beiden Modi vergleichbar** bleiben. Die Intervalle verändern die Aktualisierungsfrequenz, nicht das grundsätzliche historische Tempo.
+- Die Meinung bleibt als Zahl von −100 bis +100 erhalten; die eingebauten Spielwirkungen wechseln nur, wenn der Zahlenwert eine der fünf bestehenden Meinungsstufen erreicht.
+
+Die normale Änderung bleibt klein und über Jahrzehnte nachvollziehbar; größere Ereignisse dürfen zusätzliche Impulse geben. Stärke und Kombination der Faktoren sind noch offen.
