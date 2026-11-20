@@ -13,7 +13,7 @@ In diesem Ordner stehen **ausschließlich** Implementierungsfragen, konkrete Fun
 
 | Mechanismus | Erste Einschätzung | Details |
 |---|---|---|
-| Kontinuierlicher, gerichteter −100…+100-Wert | **Offen**: Speicherung eventuell skriptbar, native Kultur-Engine wahrscheinlich gesondert | [01](01_meinungswert_und_engine_grenzen.md) |
+| Kontinuierlicher, gerichteter −100…+100-Wert | **Plausibel als eigenes System**: numerische Variable-Maps in Referenzmods belegt, Kulturpaar-Scope und Save/Load offen; **vollständiger Vanilla-Ersatz hohes Risiko** | [01](01_meinungswert_und_engine_grenzen.md) |
 | Kontakt aktivieren/deaktivieren über Ereignisse | **Teilweise belegt**: mehrere passende `on_actions`, keine lückenlose Pop-Hook-Kette | [02](02_on_actions_und_kontakte.md) |
 | Relevanzschwellen und Bevölkerungsgewichtung | **Plausibel**: länderspezifische Kulturwerte sind im Vanilla-Script lesbar; globale Aggregation offen | [03](03_bevoelkerung_und_performance.md) |
 | Jährliche Religionszusammensetzung | **Offen**: Datenzugriff und Aggregationskosten zu prüfen | [04](04_religion.md) |
