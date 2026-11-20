@@ -21,6 +21,8 @@ In diesem Ordner stehen **ausschließlich** Implementierungsfragen, konkrete Fun
 | Kriege und kulturell zugeordnete Opfer | **Teilweise belegt**: Kriegs-/Schlachthooks; kulturbezogene Verlustdaten offen | [06](06_krieg.md) |
 | Synchronisierung auf fünf Vanilla-Meinungsstufen | **Beschlossener Ansatz**, `set_cultural_view` belegt im alten Stand; Grenzwerte und Intervall technisch zu testen | [08](08_hybrid_synchronisierung_und_intervalle.md) |
 | Kulturfenster: Icon + Balken + Tooltip pro Richtung | **GUI-Struktur und Progressbar-Vorbild im 1.4.3-beta-Spiegel belegt;** Bindung eigener Kulturpaarwerte und echter Modifier ungetestet | [09](09_gui_kulturmeinung.md) |
+| Konkreter V1-Implementierungsplan | **Dokumentiert, Umsetzung noch nicht gestartet** | [10](10_implementierungsplan_v1.md) |
+| Engine-Verifikationsmatrix und V1-Abnahme | **Quellenfundstellen geprüft, aktuelle Runtime-Tests offen** | [11](11_v1_verifikationsmatrix.md), [12](12_v1_abnahme_und_tests.md) |
 | Konkreter Implementierungs- und Testnachweis | **Noch ausstehend** | [07](07_pruefplan.md) |
 
 **Verbindliche Architekturentscheidung (20.11.2026):** Die neue kontinuierliche Meinung steuert **ausschließlich die bestehende fünfstufige Kulturmeinung**. Bei einem Grenzwechsel wird die native Stufe mit `set_cultural_view` synchronisiert. **Kulturakzeptanz und deren Vanilla-Effekte bleiben unverändert.** Berechnung wahlweise monatlich oder jährlich; technische Konfiguration noch zu validieren.
