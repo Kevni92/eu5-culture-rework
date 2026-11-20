@@ -1,24 +1,26 @@
 # 5. Auswirkungen und offene Designfragen
 
-## Fließende Gameplay-Auswirkungen
+## Beschlossene Gameplay-Wirkung
 
-Der Kulturmeinungswert soll ohne harte Stufen auf bisherige Kulturmechaniken wirken:
+Die neue kontinuierliche Kulturmeinung **ersetzt keine Vanilla-Mechanik für Akzeptanz und Kulturkapazität**. Sie verändert ausschließlich die **bestehende, diskrete Kulturmeinung**, sobald ein Wertebereich überschritten wird.
 
-- **Kulturkapazität:** Je besser die Beziehung zur Primärkultur, desto geringer der Integrationsaufwand einer im Land vertretenen Kultur.
-- **Pop-Zufriedenheit:** Harmonie und Feindschaft beeinflussen das Zusammenleben.
-- **Assimilation:** Kulturelle Anpassung hängt von gesellschaftlicher Nähe und Integrationspolitik ab.
-- **Unruhe und Separatismus:** Dauerhafte kulturelle Spannungen können Instabilität fördern.
-- **Politische Teilhabe:** Diskriminierende Staatspolitik und gesellschaftliche Integration bleiben unterscheidbar.
+Das bedeutet:
 
-Die Kosten dürfen nicht schlagartig springen, wenn ein Meinungswert eine bestimmte Zahl erreicht. Verfügbare Kulturkapazität soll als staatliche Integrationsfähigkeit bedeutsam bleiben, aber **nicht mehr als manueller Akzeptierungs-Slot** funktionieren.
+- Die fünf nativen Meinungskategorien behalten ihre bisherigen Auswirkungen auf Kulturkapazitätskosten, Assimilation und andere Spielmechaniken.
+- Der Übergang zwischen zwei Kategorien kann weiterhin einen **sprunghaften Gameplay-Effekt** auslösen. Ein vollständig fließender Bonus ist **nicht** mehr Ziel dieser Mod.
+- Kulturakzeptanz, Tolerierung, Ignorieren und Diskriminieren werden weiterhin **wie im Vanilla-Spiel** gewählt und verwaltet; ihre Kosten, Voraussetzungen und statusabhängigen Folgen bleiben unverändert.
+- Die Mod ersetzt lediglich **wie und warum sich die Meinung einer Kultur über eine andere verändert**. Die bisherigen direkten Meinungsaktionen sollen deshalb nicht länger das Ergebnis per Knopfdruck bestimmen.
 
-## Designfragen (noch nicht entschieden)
+Die Zuordnung des Wertebereichs zu den fünf Meinungskategorien steht in [01_kulturbeziehungen.md](01_kulturbeziehungen.md).
 
-1. Soll die vorhandene **Kulturkapazität** als kontinuierlicher Kapazitätsbedarf erhalten bleiben, oder grundsätzlich ersetzt werden?
-2. Welche konkreten Einflüsse erhalten **Pop-Zufriedenheit, Assimilation und Privilegien**? Müssen sie landesspezifisch sein?
-3. Gibt es zusätzlich zum weltweiten Kulturpaar eine **lokale Haltung pro Staat** – oder nur lokale Beiträge zum globalen Wert?
-4. Wie stark zählen **Religion, Sprache, Diplomatie, Krieg und Kabinettsarbeit** im Verhältnis zueinander?
-5. Wie schnell klingen negative und positive Erfahrungen ab?
-6. Wie behandelt das System Kulturwechsel, das Verschwinden einer Kultur und nachträgliche Kontaktaufnahme?
+## Offene Gameplay-Fragen
 
-**Leitlinie:** Keine Balancefragen künstlich durch Cooldowns lösen; stattdessen Reichweite, Ressourcen, Folgen und gesellschaftliche Trägheit nutzen.
+1. Gibt es neben dem weltweiten Kulturpaar langfristig zusätzlich eine **lokale Haltung pro Staat**, oder bleiben lokale Umstände nur gewichtete Beiträge?
+2. Wie stark zählen **Religion, Sprache, Diplomatie, Krieg und Kabinettsarbeit**?
+3. Wie schnell klingen negative und positive Erfahrungen ab?
+4. Wie werden neue Kulturpaare initialisiert? Historische Ausgangsbeziehungen sollen nicht verloren gehen.
+5. Wie behandelt das System Kulturwechsel, das Verschwinden einer Kultur und nachträgliche Kontaktaufnahme?
+6. Wie sollen **fremde Ereignisse** wirken, die bisher die Vanilla-Kulturmeinung unmittelbar ändern? Sie müssen möglichst in denselben gesellschaftlichen Entwicklungsprozess eingeordnet werden.
+7. Sollen monatliche und jährliche Aktualisierung ausschließlich **bei Spielbeginn** wählbar sein oder jederzeit geändert werden können?
+
+**Leitlinie:** Die neue Simulation vermeidet willkürliche Meinungsaktionen und starre Cooldowns. Bestehende Vanilla-Statussysteme bleiben unberührt.
