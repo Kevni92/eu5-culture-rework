@@ -36,27 +36,31 @@ Beim Überfahren von Icon oder Balken wird ein **gemeinsamer Tooltip für die be
 >
 > Kulturmeinung: **+43,5 / +100** · Positiv
 >
-> Entwicklung: **+0,32 pro Monat**
+> Zielmeinung: **+61,0**
+>
+> Annäherung: **+0,32 pro Monat**
 >
 > Nächste Meinungsstufe: **Kindred ab +60**
 
 Im **Jahresmodus** soll die Entwicklung entsprechend auf das gewählte Intervall bezogen sein, beispielsweise „+3,8 pro Jahr“. Die angegebene Änderungsrate muss aus der gleichen Berechnung stammen, die den Meinungswert fortschreibt.
 
-## Tooltip der Änderungsrate
+## Tooltip der Änderungsrate und des Zielwerts
 
-Der **Änderungswert** ist ein **eigener erklärbarer Einflusswert**. Auf ihn soll ein separater Hover / verschachtelter Tooltip die konkreten Beiträge anzeigen.
+Der **gesellschaftliche Zielwert** ist eine **eigene, erklärbare Größe**. Seine Faktoren sollen als separate Hover-Aufschlüsselung dargestellt werden; die tatsächlich angezeigte Monats-/Jahresänderung ergibt sich hingegen aus dem **Abstand zwischen Meinung und Zielwert** und der **Trägheit**.
 
 Beispiel (rein illustrativ):
 
-| Einfluss | Beitrag pro Monat |
+| Einfluss auf den Zielwert | Beitrag |
 |---|---:|
-| Gemeinsames Zusammenleben | +0,18 |
-| Gute Diplomatie | +0,12 |
-| Kabinettsaktion | +0,10 |
-| Religiöse Spannungen | −0,08 |
-| **Gesamtänderung** | **+0,32** |
+| Gemeinsames Zusammenleben | +25 |
+| Gute Diplomatie | +30 |
+| Kabinettsaktion | +20 |
+| Religiöse Spannungen | −14 |
+| **Gesellschaftlicher Zielwert** | **+61** |
 
-Jede Zeile muss nach Möglichkeit auf die jeweils **gerichtete Kulturbeziehung** bezogen sein; die UI darf keine Veränderung suggerieren, die in der Simulation nicht tatsächlich berechnet wurde.
+Die **Änderungsrate** erhält zusätzlich eine verständliche Erklärung: aktueller Wert, Zielwert, Abstand, Anpassungsgeschwindigkeit, resultierende Änderung pro gewähltem Intervall. **Die Faktoren sind keine separaten monatlichen Veränderungsboni.**
+
+Bei einer **inaktiven Beziehung** zeigt der Tooltip **Zielwert 0 (kein relevanter Kontakt)** und die langsame Annäherung an die Neutralität.
 
 ## Offene visuelle Entscheidungen
 
